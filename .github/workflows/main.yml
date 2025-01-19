@@ -27,7 +27,7 @@ jobs:
           file: ./src/Dockerfile
           tags: |
             nobr3c/fake-shop:latest
-            nobr3c/fake-shop:v${( github.run_number )}
+            nobr3c/fake-shop:v${{ github.run_number }}
   
   cd:
     runs-on: ubuntu-latest
