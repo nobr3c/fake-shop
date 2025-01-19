@@ -28,5 +28,10 @@ Em seguida aplicar: `kubectl apply -f k8s/deployment.yaml`
 
 `kubectl get service`
 
+`kubectl delete -f k8s/deployment.yaml`
+
+`kubectl get all`
+
+
 
 
