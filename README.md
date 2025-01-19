@@ -32,6 +32,6 @@ Em seguida aplicar: `kubectl apply -f k8s/deployment.yaml`
 
 `kubectl get all`
 
+Comandos prometheus
 
-
-
+`kubectl apply -f prometheus\deployment.yaml`
