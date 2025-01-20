@@ -1,5 +1,4 @@
-#  Deployment do Banco de Dados
-
+#deployment do banco de dados
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +7,6 @@ spec:
   selector:
     matchLabels:
       app: postgre
-  replicas: 1
   template:
     metadata:
       labels:
@@ -41,24 +39,28 @@ spec:
       targetPort: 5432
 
 ---
-# Deployment da Aplicação Web
+#deployment da aplicacao web
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fakeshop
 spec:
+  replicas: 10
   selector:
     matchLabels:
       app: fakeshop
-  replicas: 1
   template:
     metadata:
+      annotations: 
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '5000'
+        prometheus.io/path: '/metrics'
       labels:
         app: fakeshop
     spec:
       containers:
         - name: fakeshop
-          image: nobr3c/fake-shop:v1
+          image: jcdcjr/fake-shop:v2
           ports:
             - containerPort: 5000
           env:
@@ -86,4 +88,3 @@ spec:
     - port: 80
       targetPort: 5000
   type: LoadBalancer
-
